@@ -15,14 +15,7 @@ export default function reducer(state = [], action) {
             break;
 
         case 'bugRemoved':
-            return [
-                ...state,
-                {
-                    id: ++lastId,
-                    description: action.payload.description,
-                    resolved: false
-                }
-            ];
+            return state.filter(bug => bug.id !== action.payload.id);
             break;
 
         default:
