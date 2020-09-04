@@ -1,9 +1,42 @@
+// action types
+const BUG_Added = "bugAdded";
+const BUG_Removed = "bugRemoved";
+const BUG_Resolved = "bugResolved";
+
+
+// action creators
+export const bugAdded = description => ({
+    type: BUG_Added,
+    payload: {
+        description
+    }
+});
+
+export const bugresolved = id => ({
+    type: BUG_Resolved,
+    payload: {
+        id
+    }
+});
+
+// export function bugAdded(description) {
+//     return {
+//         type: actions.BUG_Added,
+//         payload: {
+//             description: "bug1"
+//         }
+//     };
+// }
+
+
+
+// reducer
+
 let lastId = 0;
-import * as actions from './actionTypes';
 
 export default function reducer(state = [], action) {
     switch (action.type) {
-        case actions.BUG_Added:
+        case BUG_Added:
             return [
                 ...state,
                 {
@@ -15,11 +48,11 @@ export default function reducer(state = [], action) {
 
             break;
 
-        case actions.BUG_Removed:
+        case BUG_Removed:
             return state.filter(bug => bug.id !== action.payload.id);
             break;
 
-        case actions.BUG_Resolved:
+        case BUG_Resolved:
             return state.map(bug => bug.id !== action.payload.id ? bug : { ...bug, resolved: true });
             break;
 
