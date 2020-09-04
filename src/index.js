@@ -7,12 +7,12 @@ const store = configureStore();
 const unsubscribe = store.subscribe(() => {
     console.log("store changed!", store.getState());
 });
-store.dispatch(actions.bugAdded('Bug 1'));
-store.dispatch(actions.bugAdded('Bug 2'));
-store.dispatch(actions.bugAdded('Bug 3'));
-store.dispatch(actions.bugAdded('Bug 4'));
+store.dispatch(actions.bugAdded({ description: 'Bug 1' }));
+store.dispatch(actions.bugAdded({ description: 'Bug 2' }));
+store.dispatch(actions.bugAdded({ description: 'Bug 3' }));
+store.dispatch(actions.bugAdded({ description: 'Bug 4' }));
 
-store.dispatch(actions.bugresolved(1));
+store.dispatch(actions.bugResolved({ id: 1 }));
 
 unsubscribe();
 
