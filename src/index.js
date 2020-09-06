@@ -30,5 +30,7 @@ unsubscribe();
 
 
 const unresolvedBugs = getUnresolvedBugs(store.getState());
+const unresolvedBugs1 = getUnresolvedBugs(store.getState());
 
-console.log(unresolvedBugs);
+
+console.log(unresolvedBugs === unresolvedBugs1);
