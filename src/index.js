@@ -10,7 +10,14 @@ const store = configureStore();
 const unsubscribe = store.subscribe(() => {
     console.log("store changed!", store.getState());
 });
-store.dispatch(userAdded({ name: "user 1" }));
+store.dispatch((dispatch, getState) => {
+    // call api
+    //when promise is resolved => dispatch()
+    dispatch({ type: "bugsRecived", bugs: [1, 2, 3] })
+    console.log(getState());
+    // if the promise is reject => dispatch();
+});
+//store.dispatch(userAdded({ name: "user 1" }));
 // store.dispatch(userAdded({ name: "user 2" }));
 // store.dispatch(projectAdded({ name: 'project 1' }));
 // store.dispatch(bugAdded({ description: 'Bug 1' }));
