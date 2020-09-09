@@ -12,11 +12,20 @@ const unsubscribe = store.subscribe(() => {
 });
 
 store.dispatch({
-    type: 'error',
+    type: 'apiCallBegan',
     payload: {
-        message: "error notifiaction message"
+        url: "/bugs",
+        onSuccess: "bugsReceived",
+        onError: "apiRequestFailed"
     }
 });
+
+// store.dispatch({
+//     type: 'error',
+//     payload: {
+//         message: "error notifiaction message"
+//     }
+// });
 
 // store.dispatch((dispatch, getState) => {
 //     // call api
