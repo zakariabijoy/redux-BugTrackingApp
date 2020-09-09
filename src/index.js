@@ -2,6 +2,7 @@ import configureStore from './store/configureStore';
 import { projectAdded } from './store/projects';
 import { bugResolved, bugAdded, getUnresolvedBugs, bugAssignedToUser, getBugsByUser } from './store/bugs';
 import { userAdded } from './store/users';
+import * as actions from './store/api';
 
 
 
@@ -11,14 +12,10 @@ const unsubscribe = store.subscribe(() => {
     console.log("store changed!", store.getState());
 });
 
-store.dispatch({
-    type: 'apiCallBegan',
-    payload: {
-        url: "/bugs",
-        onSuccess: "bugsReceived",
-        onError: "apiRequestFailed"
-    }
-});
+store.dispatch(actions.apiCallBegan({
+    url: "/bugs",
+    onSuccess: actions.apiCallSuccess.type
+}));
 
 // store.dispatch({
 //     type: 'error',
