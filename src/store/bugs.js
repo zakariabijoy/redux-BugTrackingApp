@@ -13,8 +13,17 @@ const slice = createSlice({
     },
     reducers: {
         //actions => action handlers
+        bugsRequested: (bugs, action) => {
+            bugs.loading = true;
+        },
+
+        bugsRequestedFailed: (bugs, action) => {
+            bugs.loading = false;
+        },
+
         bugsReceived: (bugs, action) => {
             bugs.list = action.payload;
+            bugs.loading = false;
         },
         bugAdded: (bugs, action) => {
             bugs.list.push({
@@ -37,7 +46,7 @@ const slice = createSlice({
 
 
 
-export const { bugAdded, bugResolved, bugAssignedToUser, bugsReceived } = slice.actions;
+export const { bugAdded, bugResolved, bugAssignedToUser, bugsReceived, bugsRequested, bugsRequestedFailed } = slice.actions;
 
 export default slice.reducer;
 
@@ -46,7 +55,9 @@ const url = "/bugs";
 
 export const loadBugs = () => apiCallBegan({
     url,
-    onSuccess: bugsReceived.type
+    onStart: bugsRequested.type,
+    onSuccess: bugsReceived.type,
+    onError: bugsRequestedFailed.type
 });
 
 // selector
@@ -57,12 +68,12 @@ export const loadBugs = () => apiCallBegan({
 export const getUnresolvedBugs = createSelector(
     state => state.entities.bugs,
     state => state.entities.projects,
-    (bugs, projects) => bugs.filter(b => !b.resolved)
+    (bugs, projects) => bugs.list.filter(b => !b.resolved)
 );
 
 export const getBugsByUser = userId => createSelector(
     state => state.entities.bugs,
-    bugs => bugs.filter(b => b.userId === userId)
+    bugs => bugs.list.filter(b => b.userId === userId)
 )
 
 
