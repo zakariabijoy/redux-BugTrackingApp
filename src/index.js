@@ -14,6 +14,9 @@ const unsubscribe = store.subscribe(() => {
 
 // UI Layer
 store.dispatch(loadBugs());
+setTimeout(() => {
+    store.dispatch(loadBugs());
+}, 2000);
 
 // store.dispatch({
 //     type: 'error',
