@@ -1,5 +1,5 @@
 import configureStore from './store/configureStore';
-import { loadBugs, addBug, resolveBug } from './store/bugs';
+import { loadBugs, addBug, resolveBug, assignBugToUser } from './store/bugs';
 
 
 
@@ -16,8 +16,13 @@ const unsubscribe = store.subscribe(() => {
 
 
 store.dispatch(loadBugs());
+
+// setTimeout(() => {
+//     store.dispatch(resolveBug(1));
+// }, 2000);
+
 setTimeout(() => {
-    store.dispatch(resolveBug(1));
+    store.dispatch(assignBugToUser(1, 4));
 }, 2000);
 
 // store.dispatch({
