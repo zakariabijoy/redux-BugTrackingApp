@@ -71,6 +71,13 @@ export const addBug = bug => apiCallBegan({
     onSuccess: bugAdded.type
 });
 
+export const resolveBug = id => apiCallBegan({
+    url: url + "/" + id,
+    method: 'patch',
+    data: { resolved: true },
+    onSuccess: bugResolved.type
+});
+
 // selector
 // export const getUnresolvedBugs = state => state.entities.bugs.filter(b => !b.resolved);
 

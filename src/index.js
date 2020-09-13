@@ -1,5 +1,5 @@
 import configureStore from './store/configureStore';
-import { addBug } from './store/bugs';
+import { loadBugs, addBug, resolveBug } from './store/bugs';
 
 
 
@@ -12,13 +12,13 @@ const unsubscribe = store.subscribe(() => {
 
 // UI Layer
 
-store.dispatch(addBug({ description: 'a' }));
+// store.dispatch(addBug({ description: 'a' }));
 
 
-// store.dispatch(loadBugs());
-// setTimeout(() => {
-//     store.dispatch(loadBugs());
-// }, 2000);
+store.dispatch(loadBugs());
+setTimeout(() => {
+    store.dispatch(resolveBug(1));
+}, 2000);
 
 // store.dispatch({
 //     type: 'error',
