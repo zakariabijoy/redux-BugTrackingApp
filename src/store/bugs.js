@@ -102,3 +102,4 @@ export const getBugsByUser = userId => createSelector(
 )
 
 
+// Cohesion is  software design    for keep related things in one module , but we aslo can break this if our module is too big
