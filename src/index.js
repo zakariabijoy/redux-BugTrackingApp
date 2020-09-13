@@ -1,8 +1,6 @@
 import configureStore from './store/configureStore';
-import { projectAdded } from './store/projects';
-import { bugResolved, bugAdded, getUnresolvedBugs, bugAssignedToUser, getBugsByUser, loadBugs } from './store/bugs';
-import { userAdded } from './store/users';
-import * as actions from './store/api';
+import { addBug } from './store/bugs';
+
 
 
 
@@ -13,10 +11,14 @@ const unsubscribe = store.subscribe(() => {
 });
 
 // UI Layer
-store.dispatch(loadBugs());
-setTimeout(() => {
-    store.dispatch(loadBugs());
-}, 2000);
+
+store.dispatch(addBug({ description: 'a' }));
+
+
+// store.dispatch(loadBugs());
+// setTimeout(() => {
+//     store.dispatch(loadBugs());
+// }, 2000);
 
 // store.dispatch({
 //     type: 'error',
@@ -44,16 +46,16 @@ setTimeout(() => {
 // store.dispatch(bugResolved({ id: 1 }));
 
 
-unsubscribe();
+// unsubscribe();
 
-// store.dispatch({
-//     type: actions.BUG_Removed,
-//     payload: {
-//         id: 1
-//     }
-// });
+// // store.dispatch({
+// //     type: actions.BUG_Removed,
+// //     payload: {
+// //         id: 1
+// //     }
+// // });
 
 
 
-const bugs = getBugsByUser(1)(store.getState());
-console.log(bugs);
+// const bugs = getBugsByUser(1)(store.getState());
+// console.log(bugs);
