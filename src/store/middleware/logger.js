@@ -3,7 +3,7 @@ const logger = param => store => next => action => {
     // console.log("next:", next);
     // console.log("action:", action);
 
-    next(action);
+    return next(action);
 
 };
 
