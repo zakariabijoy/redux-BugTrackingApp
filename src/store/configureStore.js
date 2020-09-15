@@ -10,6 +10,11 @@ import api from './middleware/api';
 export default function () {
     return configureStore({
         reducer,
-        middleware: [...getDefaultMiddleware(), logger({ destination: 'console' }), toast, api]//, func]
+        middleware: [
+            ...getDefaultMiddleware(),
+            // logger({ destination: 'console' }),
+            toast,
+            api
+        ]//, func]
     });
 };
